@@ -10,6 +10,10 @@ const staticPath = path.join(__dirname, './public');
 app.set('view engine', 'ejs');
 app.use(express.static(staticPath));
 
+app.use('/peerjs', require('peer').ExpressPeerServer(server, {
+  debug: true
+}));
+
 app.get('/', (req, res) => {
   res.redirect(`/${uuid()}`);
 });
